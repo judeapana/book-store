@@ -1,0 +1,46 @@
+{% extends'index.html' %}
+{% block body %}
+    {% if book %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card shadow">
+                        <a href="{{ url_for('admin.create_book') }}" class="btn btn-primary">Create</a>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>title</th>
+                                <th>isbn</th>
+                                <th>description</th>
+                                <th>year</th>
+                                <th>author</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for _ in book %}
+                                <tr>
+                                    <td>{{ _.title }}</td>
+                                    <td>{{ _.isbn }}</td>
+                                    <td>{{ _.description }}</td>
+                                    <td>{{ _.year }}</td>
+                                    <td>{{ _.author.full_name }}</td>
+                                    <td>
+                                        <a href="{{ url_for('admin.update_book',pk=_.id) }}">Update</a>
+                                        <a href="{{ url_for('admin.delete_book',pk=_.id) }}">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Please no books</p>
+        <a href="{{ url_for('admin.create_book') }}" class="btn btn-primary">Create</a>
+
+    {% endif %}
+{% endblock %}

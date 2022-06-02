@@ -1,0 +1,41 @@
+{% extends'index.html' %}
+{% block body %}
+    {% if genre %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>{{ title }}</h3>
+                    <a href="{{ url_for('admin.create_genre') }}" class="btn btn-primary">Create</a>
+                    <div class="card shadow-sm">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for _ in genre %}
+                                <tr>
+                                    <td>{{ _.name }}</td>
+                                    <td>{{ _.description }}</td>
+                                    <td>
+                                        <a href="{{ url_for('admin.update_genre',pk=_.id) }}">Update</a>
+                                        <a href="{{ url_for('admin.delete_genre',pk=_.id) }}">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <p>Please no Genre</p>
+        <a href="{{ url_for('admin.create_genre') }}" class="btn btn-primary">Create</a>
+
+    {% endif %}
+{% endblock %}

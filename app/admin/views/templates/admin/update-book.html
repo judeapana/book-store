@@ -1,0 +1,28 @@
+{% extends'index.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ title }}</h3>
+                <form action="" method="post">
+                    Title
+                    {{ form.title(class="form-control") }}
+                    ISBN
+                    {{ form.isbn(class="form-control") }}
+                    Description
+                    {{ form.description(class="form-control") }}
+                    Year
+                    {{ form.year(class="form-control") }}
+                    Author
+                    {{ form.author(class="form-control") }}
+                    Genre
+                    {{ form.genre(class="form-control") }}
+                    {{ form.hidden_tag() }}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

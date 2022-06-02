@@ -1,0 +1,50 @@
+{% extends'index.html' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Number Of Authors({{ _author|count }})</p>
+                <p>Number Of Genre({{ _genre|count }})</p>
+                <p>Number Of Books({{ _book|count }})</p>
+            </div>
+            <div class="col-md-12">
+                <div class="card p-3 shadow">
+                    <h4>Authors Books</h4>
+                    {% for auh in _author %}
+                        Author Name: {{ auh.full_name }} -
+                        <ul>
+                            {% for i in auh.books.all() %}
+                                <li>Books - {{ i.title }}</li>
+                            {% endfor %}
+                        </ul>
+
+                    {% endfor %}
+                </div>
+                <div class="card p-3 shadow">
+
+                    <h4>Authors Books</h4>
+                    {% for auh in _author %}
+                        <h5>>Name: {{ auh.full_name }}</h5>
+                        <ul>
+                            {% for i in auh.books.all() %}
+                                <li> Books - {{ i.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </div>
+                <div class="card p-3 shadow">
+                    <h4>Genre</h4>
+                    {% for auh in _genre %}
+                        <h5>>Genre Name: {{ auh.name }}</h5>
+                        <ul>
+                            {% for i in auh.books.all() %}
+                                <li> Books - {{ i.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
